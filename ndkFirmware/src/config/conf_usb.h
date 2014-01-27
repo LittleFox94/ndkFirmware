@@ -181,27 +181,27 @@ extern void vbus_action(bool b_vbus_high);
  * @{
  */
 //! Endpoints' numbers used by single or first CDC port
-#define  UDI_CDC_DATA_EP_IN_0          (1 | USB_EP_DIR_IN)  // TX
-#define  UDI_CDC_DATA_EP_OUT_0         (2 | USB_EP_DIR_OUT) // RX
-#define  UDI_CDC_COMM_EP_0             (3 | USB_EP_DIR_IN)  // Notify endpoint
+#define  UDI_CDC_DATA_EP_IN_0          (2 | USB_EP_DIR_IN)  // TX
+#define  UDI_CDC_DATA_EP_OUT_0         (3 | USB_EP_DIR_OUT) // RX
+#define  UDI_CDC_COMM_EP_0             (4 | USB_EP_DIR_IN)  // Notify endpoint
 //! Endpoints' numbers used by second CDC port (Optional)
-#define  UDI_CDC_DATA_EP_IN_1          (4 | USB_EP_DIR_IN)  // TX
-#define  UDI_CDC_DATA_EP_OUT_1         (5 | USB_EP_DIR_OUT) // RX
-#define  UDI_CDC_COMM_EP_1             (6 | USB_EP_DIR_IN)  // Notify endpoint
+#define  UDI_CDC_DATA_EP_IN_1          (5 | USB_EP_DIR_IN)  // TX
+#define  UDI_CDC_DATA_EP_OUT_1         (6 | USB_EP_DIR_OUT) // RX
+#define  UDI_CDC_COMM_EP_1             (7 | USB_EP_DIR_IN)  // Notify endpoint
 //! Endpoints' numbers used by third CDC port (Optional)
-#define  UDI_CDC_DATA_EP_IN_2          (7 | USB_EP_DIR_IN)  // TX
-#define  UDI_CDC_DATA_EP_OUT_2         (8 | USB_EP_DIR_OUT) // RX
-#define  UDI_CDC_COMM_EP_2             (9 | USB_EP_DIR_IN)  // Notify endpoint
+#define  UDI_CDC_DATA_EP_IN_2          (8 | USB_EP_DIR_IN)  // TX
+#define  UDI_CDC_DATA_EP_OUT_2         (9 | USB_EP_DIR_OUT) // RX
+#define  UDI_CDC_COMM_EP_2             (10 | USB_EP_DIR_IN)  // Notify endpoint
 
 //! Interface numbers used by single or first CDC port
-#define  UDI_CDC_COMM_IFACE_NUMBER_0   0
-#define  UDI_CDC_DATA_IFACE_NUMBER_0   1
+#define  UDI_CDC_COMM_IFACE_NUMBER_0   1
+#define  UDI_CDC_DATA_IFACE_NUMBER_0   2
 //! Interface numbers used by second CDC port (Optional)
-#define  UDI_CDC_COMM_IFACE_NUMBER_1   2
-#define  UDI_CDC_DATA_IFACE_NUMBER_1   3
+#define  UDI_CDC_COMM_IFACE_NUMBER_1   3
+#define  UDI_CDC_DATA_IFACE_NUMBER_1   4
 //! Interface numbers used by third CDC port (Optional)
-#define  UDI_CDC_COMM_IFACE_NUMBER_2   4
-#define  UDI_CDC_DATA_IFACE_NUMBER_2   5
+#define  UDI_CDC_COMM_IFACE_NUMBER_2   5
+#define  UDI_CDC_DATA_IFACE_NUMBER_2   6
 //@}
 //@}
 
@@ -228,10 +228,10 @@ extern void vbus_action(bool b_vbus_high);
  * @{
  */
 //! Endpoint numbers definition
-#define  UDI_HID_KBD_EP_IN           (10 | USB_EP_DIR_IN)
+#define  UDI_HID_KBD_EP_IN           (11 | USB_EP_DIR_IN)
 
 //! Interface number
-#define  UDI_HID_KBD_IFACE_NUMBER    6
+#define  UDI_HID_KBD_IFACE_NUMBER    7
 //@}
 //@}
 
@@ -273,13 +273,13 @@ extern bool vendor_setup_in_received(void);
 //! Endpoint numbers definition
 //#define  UDI_VENDOR_EP_INTERRUPT_IN  (11 | USB_EP_DIR_IN)
 //#define  UDI_VENDOR_EP_INTERRUPT_OUT (11 | USB_EP_DIR_OUT)
-#define  UDI_VENDOR_EP_BULK_IN       (11 | USB_EP_DIR_IN)
-#define  UDI_VENDOR_EP_BULK_OUT      (11 | USB_EP_DIR_OUT)
+#define  UDI_VENDOR_EP_BULK_IN       (1 | USB_EP_DIR_IN)
+#define  UDI_VENDOR_EP_BULK_OUT      (1 | USB_EP_DIR_OUT)
 //#define  UDI_VENDOR_EP_ISO_IN        (15 | USB_EP_DIR_IN)
 //#define  UDI_VENDOR_EP_ISO_OUT       (16 | USB_EP_DIR_OUT)
 
 //! Interface number
-#define UDI_VENDOR_IFACE_NUMBER		7
+#define UDI_VENDOR_IFACE_NUMBER		0
 //@}
 //@}
 

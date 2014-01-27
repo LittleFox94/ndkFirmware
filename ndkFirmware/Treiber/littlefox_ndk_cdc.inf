@@ -15,24 +15,24 @@ DriverVer   = 01/08/2013,6.0.0.0
 %Manufacturer%=DeviceList, NTAMD64, NTIA64, NT 
 
 [DeviceList] 
-%CDC_DEVICE_USART%=DriverInstall, USB\VID_1337&PID_1F05&MI_00
-%CDC_DEVICE_SPI%=DriverInstall, USB\VID_1337&PID_1F05&MI_02
-%CDC_DEVICE_TWI%=DriverInstall, USB\VID_1337&PID_1F05&MI_04
+%CDC_DEVICE_USART%=DriverInstall, USB\VID_1337&PID_1F05&MI_01
+%CDC_DEVICE_SPI%=DriverInstall, USB\VID_1337&PID_1F05&MI_03
+%CDC_DEVICE_TWI%=DriverInstall, USB\VID_1337&PID_1F05&MI_05
 
 [DeviceList.NTAMD64]
-%CDC_DEVICE_USART%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_00
-%CDC_DEVICE_SPI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_02
-%CDC_DEVICE_TWI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_04
+%CDC_DEVICE_USART%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_01
+%CDC_DEVICE_SPI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_03
+%CDC_DEVICE_TWI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_05
 
 [DeviceList.NTIA64]
-%CDC_DEVICE_USART%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_00
-%CDC_DEVICE_SPI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_02
-%CDC_DEVICE_TWI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_04
+%CDC_DEVICE_USART%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_01
+%CDC_DEVICE_SPI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_03
+%CDC_DEVICE_TWI%=DriverInstall.NTamd64, USB\VID_1337&PID_1F05&MI_05
 
 [DeviceList.NT]
-%CDC_DEVICE_USART%=DriverInstall.NT, USB\VID_1337&PID_1F05&MI_00
-%CDC_DEVICE_SPI%=DriverInstall.NT, USB\VID_1337&PID_1F05&MI_02
-%CDC_DEVICE_TWI%=DriverInstall.NT, USB\VID_1337&PID_1F05&MI_04
+%CDC_DEVICE_USART%=DriverInstall.NT, USB\VID_1337&PID_1F05&MI_01
+%CDC_DEVICE_SPI%=DriverInstall.NT, USB\VID_1337&PID_1F05&MI_03
+%CDC_DEVICE_TWI%=DriverInstall.NT, USB\VID_1337&PID_1F05&MI_05
 
 ;----------------------------------------------------------
 ; Windows 2000, XP, Vista, Windows 7, Windows 8 - 32bit
@@ -100,7 +100,8 @@ ServiceBinary=%12%\usbser.sys
 ;----------------------------------------------------------
 
 [Strings] 
-Manufacturer = "LittleFox" 
+Manufacturer = "LittleFox"
+SourceName = "ndkDriverPackage"
 CDC_DEVICE_USART = "USB to USART converter"
 CDC_DEVICE_SPI = "USB to SPI converter"
 CDC_DEVICE_TWI = "USB to TWI/I²C converter"

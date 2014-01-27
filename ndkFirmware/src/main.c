@@ -131,7 +131,7 @@ void main_vendor_bulk_out_received(udd_ep_status_t status, iram_size_t nb_transf
 			package->ResponseCode = RESPONSE_OK;
 		}
 	#if BOOTLOADER_BUILD == 1
-		case 0xF1
+		case 0xF1:
 		{
 			
 		}
