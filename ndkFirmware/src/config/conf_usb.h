@@ -56,7 +56,7 @@
 #define  USB_DEVICE_PRODUCT_ID				0x1F05
 #define  USB_DEVICE_MAJOR_VERSION			1
 #define  USB_DEVICE_MINOR_VERSION			0
-#define  USB_DEVICE_POWER					50 // Consumption on Vbus line (mA)
+#define  USB_DEVICE_POWER					100 // Consumption on Vbus line (mA)
 #define  USB_DEVICE_ATTR					(USB_CONFIG_ATTR_BUS_POWERED | USB_CONFIG_ATTR_MUST_SET)
 
 //! USB Device string definitions (Optional)
@@ -88,8 +88,8 @@ extern uint8_t _serialNumberUSB[];
  */
 #define  UDC_VBUS_EVENT(b_vbus_high)      vbus_action(b_vbus_high)
 extern void vbus_action(bool b_vbus_high);
-// #define  UDC_SOF_EVENT()                  user_callback_sof_action()
-// extern void user_callback_sof_action(void);
+#define  UDC_SOF_EVENT()                  sof_action()
+extern void sof_action(void);
 // #define  UDC_SUSPEND_EVENT()              user_callback_suspend_action()
 // extern void user_callback_suspend_action(void);
 // #define  UDC_RESUME_EVENT()               user_callback_resume_action()
@@ -213,8 +213,8 @@ extern void vbus_action(bool b_vbus_high);
 //! Interface callback definition
 #define  UDI_HID_KBD_ENABLE_EXT()       true
 #define  UDI_HID_KBD_DISABLE_EXT()
-// #define UDI_HID_KBD_ENABLE_EXT() my_callback_keyboard_enable()
-// extern bool my_callback_keyboard_enable(void);
+//#define UDI_HID_KBD_ENABLE_EXT() keyboard_enable()
+//extern bool keyboard_enable(void);
 // #define UDI_HID_KBD_DISABLE_EXT() my_callback_keyboard_disable()
 // extern void my_callback_keyboard_disable(void);
 #define  UDI_HID_KBD_CHANGE_LED(value)
@@ -292,6 +292,8 @@ extern bool vendor_setup_in_received(void);
  */
 //! USB Interfaces descriptor structure
 #define UDI_COMPOSITE_DESC_T \
+	udi_vendor_desc_t udi_vendor; \
+	\
 	usb_iad_desc_t udi_cdc_iad0; \
 	udi_cdc_comm_desc_t udi_cdc_comm0; \
 	udi_cdc_data_desc_t udi_cdc_data0; \
@@ -304,12 +306,12 @@ extern bool vendor_setup_in_received(void);
 	udi_cdc_comm_desc_t udi_cdc_comm2; \
 	udi_cdc_data_desc_t udi_cdc_data2; \
 	\
-	udi_hid_kbd_desc_t udi_hid_keyboard; \
-	\
-	udi_vendor_desc_t udi_vendor;
+	udi_hid_kbd_desc_t udi_hid_keyboard;
 
 //! USB Interfaces descriptor value for Full Speed
 #define UDI_COMPOSITE_DESC_FS \
+	.udi_vendor			= UDI_VENDOR_DESC_FS, \
+	\
 	.udi_cdc_iad0		= UDI_CDC_IAD_DESC_0, \
 	.udi_cdc_comm0		= UDI_CDC_COMM_DESC_0, \
 	.udi_cdc_data0		= UDI_CDC_DATA_DESC_0_FS, \
@@ -323,11 +325,12 @@ extern bool vendor_setup_in_received(void);
 	.udi_cdc_data2		= UDI_CDC_DATA_DESC_2_FS, \
 	\
 	.udi_hid_keyboard	= UDI_HID_KBD_DESC, \
-	\
-	.udi_vendor			= UDI_VENDOR_DESC_FS,
+	
 
 //! USB Interfaces descriptor value for High Speed
 #define UDI_COMPOSITE_DESC_HS \
+	.udi_vendor			= UDI_VENDOR_DESC_HS, \
+	\
 	.udi_cdc_iad0		= UDI_CDC_IAD_DESC_0, \
 	.udi_cdc_comm0		= UDI_CDC_COMM_DESC_0, \
 	.udi_cdc_data0		= UDI_CDC_DATA_DESC_0_HS, \
@@ -341,19 +344,17 @@ extern bool vendor_setup_in_received(void);
 	.udi_cdc_data2		= UDI_CDC_DATA_DESC_2_HS, \
 	\
 	.udi_hid_keyboard	= UDI_HID_KBD_DESC, \
-	\
-	.udi_vendor			= UDI_VENDOR_DESC_HS,
 
 //! USB Interface APIs
 #define UDI_COMPOSITE_API \
+	&udi_api_vendor, \
 	&udi_api_cdc_comm, \
 	&udi_api_cdc_data, \
 	&udi_api_cdc_comm, \
 	&udi_api_cdc_data, \
 	&udi_api_cdc_comm, \
 	&udi_api_cdc_data, \
-	&udi_api_hid_kbd, \
-	&udi_api_vendor
+	&udi_api_hid_kbd
 
 //@}
 
