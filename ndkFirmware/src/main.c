@@ -49,12 +49,17 @@ int main (void)
 		vbus_action(true);
 	}
 
-	PORTD.DIR = 7;
+    PORTC.PIN0CTRL = PORT_OPC_PULLUP_gc;
+    PORTC.PIN1CTRL = PORT_OPC_PULLUP_gc;
+    PORTC.PIN2CTRL = PORT_OPC_PULLUP_gc;
+    PORTC.PIN3CTRL = PORT_OPC_PULLUP_gc;
+    PORTC.PIN4CTRL = PORT_OPC_PULLUP_gc;
+//	PORTC.DIR = 1;
 
 	while(true)
 	{
 		sleepmgr_enter_sleep();
-	}
+        }
 }
 
 void vbus_action(bool b_vbus_high)
@@ -179,16 +184,16 @@ void sof_action()
 	if(frameNumber % 2 == 0)
 	{
 		// Press the keys
-		if(!_leftDown && (portc & 1) == 0)
+		if(!_btn1Down && (portc & 1) == 0)
 		{
-			udi_hid_kbd_down(HID_LEFT);
-			_leftDown = true;
+			udi_hid_kbd_down(HID_ENTER);
+			_btn1Down = true;
 		}
 
-		if(!_rightDown && (portc & 2) == 0)
+		if(!_downDown && (portc & 2) == 0)
 		{
-			udi_hid_kbd_down(HID_RIGHT);
-			_rightDown = true;
+			udi_hid_kbd_down(HID_DOWN);
+			_downDown = true;
 		}
 
 		if(!_upDown && (portc & 4) == 0)
@@ -197,37 +202,31 @@ void sof_action()
 			_upDown = true;
 		}
 
-		if(!_downDown && (portc & 8) == 0)
+		if(!_rightDown && (portc & 8) == 0)
 		{
-			udi_hid_kbd_down(HID_DOWN);
-			_downDown = true;
+			udi_hid_kbd_down(HID_RIGHT);
+			_rightDown = true;
 		}
 
-		if(!_btn1Down && (portc & 16) == 0)
+		if(!_leftDown && (portc & 16) == 0)
 		{
-			udi_hid_kbd_down(HID_ESCAPE);
-			_btn1Down = true;
-		}
-
-		if(!_btn2Down && (portc & 32) == 0)
-		{
-			udi_hid_kbd_down(HID_A);
-			_btn2Down = true;
+			udi_hid_kbd_down(HID_LEFT);
+			_leftDown = true;
 		}
 	}
 	else if(frameNumber % 2 == 1)
 	{
 		// Release the keys
-		if(_leftDown && (portc & 1) != 0)
+		if(_btn1Down && (portc & 1) != 0)
 		{
-			udi_hid_kbd_up(HID_LEFT);
-			_leftDown = false;
+			udi_hid_kbd_up(HID_ENTER);
+			_btn1Down = false;
 		}
 
-		if(_rightDown && (portc & 2) != 0)
+		if(_downDown && (portc & 2) != 0)
 		{
-			udi_hid_kbd_up(HID_RIGHT);
-			_rightDown = false;
+			udi_hid_kbd_up(HID_DOWN);
+			_downDown = false;
 		}
 
 		if(_upDown && (portc & 4) != 0)
@@ -236,22 +235,16 @@ void sof_action()
 			_upDown = false;
 		}
 
-		if(_downDown && (portc & 8) != 0)
+		if(_rightDown && (portc & 8) != 0)
 		{
-			udi_hid_kbd_up(HID_DOWN);
-			_downDown = false;
+			udi_hid_kbd_up(HID_RIGHT);
+			_rightDown = false;
 		}
 
-		if(_btn1Down && (portc & 16) != 0)
+		if(_leftDown && (portc & 16) != 0)
 		{
-			udi_hid_kbd_up(HID_ESCAPE);
-			_btn1Down = false;
-		}
-
-		if(_btn2Down && (portc & 32) != 0)
-		{
-			udi_hid_kbd_up(HID_A);
-			_btn2Down = false;
+			udi_hid_kbd_up(HID_LEFT);
+			_leftDown = false;
 		}
 	}
 }

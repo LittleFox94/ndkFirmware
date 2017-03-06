@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOOLCHAIN_PATH=/home/littlefox/SDKs/avr8-gnu-toolchain-linux_x86_64/bin
+TOOLCHAIN_PATH=/opt/avr8-gnu-toolchain-linux_x86_64/bin
 PART=atxmega32a4u
 CCFLAGS="-DBOARD=USER_BOARD -O3"
 ASFLAGS=""
